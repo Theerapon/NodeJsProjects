@@ -1,15 +1,63 @@
 const chalk = require('chalk')
-const validator = require('validator');
-const getNotes = require('./notes');
+const yargs = require('yargs')
+const getNotes = require('./notes.js');
 
-console.log(getNotes());
+// Customize yargs version
+yargs.version('1.1.0')
 
-console.log(validator.isEmail('theerapon.nanoi.185@gmail.com'));
-console.log(validator.isURL('theerapon.com'));
-console.log(chalk.green('Success!'))
-console.log(chalk.bold.green('Success!'))
-console.log(chalk.bold.green.inverse('Success!'));
+// Create add command
+yargs.command({
+    command: 'add',
+    description: 'Add a new node',
+    builders: {
+        title: {
+            description: 'Note title',
+            demandOptions: true,
+            type: 'string',
+        },
+        body: {
+            description: 'Note Body',
+            demandOptions: true,
+            type: 'string',
+        }
+    },
+    handler: function (argv) {
+        console.log('Title: ', argv.title)
+        console.log('Body: ', argv.body)
+    }
+})
 
-// const add = require('./utils')
-// const sum = add(4, -2)
-// console.log(sum)
+// Create remove command
+yargs.command({
+    command: 'remove',
+    description: 'Removing a node',
+    handler: function () {
+        console.log('Removing the note')
+    }
+
+})
+
+// Create read command
+yargs.command({
+    command: 'read',
+    description: 'Reading a note',
+    handler: function () {
+        console.log('Reding the note')
+    }
+})
+
+// Create list command
+yargs.command({
+    command: 'list',
+    description: 'Listing a node',
+    handler: function () {
+        console.log('Listing out all notes')
+    }
+})
+
+
+yargs.parse()
+
+// add, remove, read, list
+
+// console.log(yargs.argv)
