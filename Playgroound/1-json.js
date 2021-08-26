@@ -1,22 +1,14 @@
 const fs = require('fs');
 
-// const book = {
-//     title: 'Ego is the Enemy',
-//     author: 'Tyan Holiday',
-// }
-
-// const bookJSON = JSON.stringify(book)
-// fs.writeFileSync('1-json.json', bookJSON)
-
-// const dataBuffer = fs.readFileSync('1-json.json')
-// const dataJSON = dataBuffer.toString()
-// const data = JSON.parse(dataJSON)
-// console.log(data.title)
-
+// read the file
 const databuffer = fs.readFileSync('1-json.json')
 const userData = JSON.parse(databuffer.toString())
+
+// set the new user data
 userData.name = "FAKIE"
 userData.age = 22
 console.log(userData)
+
+// overwrite the old user data
 fs.writeFileSync('1-json.json', JSON.stringify(userData))
 
