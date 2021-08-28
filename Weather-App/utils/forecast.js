@@ -16,15 +16,15 @@ const forecast = (latitude, longitude, callback) => {
     
     const url = 'http://api.weatherstack.com/current?access_key=f63922f5b5705a7d492d868b4a4e5713&query=' + latitude + ',' + longitude + '&units=f'
 
-    request({ url: url, json: true }, (error, response) => {
+    request({ url, json: true }, (error, { body }) => {
         if (error) {
             const errorMessage = 'Unable to connect to weather service!'
             callback(errorMessage, undefined)
-        } else if (response.body.error) {
+        } else if (body.error) {
             const errorMessage = 'Unable to find location'
             callback(errorMessage, undefined)
         } else {
-            callback(undefined, response.body.current.weather_descriptions[0] + '. It is currently ' + response.body.current.temperature + ' degress out. There is a ' + response.body.current.feelslike + '% chance of rain')
+            callback(undefined, body.current.weather_descriptions[0] + '. It is currently ' + body.current.temperature + ' degress out. There is a ' + body.current.feelslike + '% chance of rain')
         }
     })
 }
