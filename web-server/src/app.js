@@ -63,6 +63,21 @@ app.get('/weather', (request, response) => {
     
 })
 
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404 not found',
+        name: 'Theerapon nanoi',
+        errorMessage: 'Help article not found'
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404 not found',
+        name: 'Theerapon nanoi',
+        errorMessage: 'Page not found, Try again later'
+    })
+})
 
 app.listen(3000, () => {
     console.log('Server is up on port 3000')
