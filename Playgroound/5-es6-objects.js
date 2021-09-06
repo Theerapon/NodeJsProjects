@@ -25,16 +25,11 @@ const product = {
 // const stock = product.stock
 
 
-const transaction = (type, myProduct) => {
-    const {
-        label:productLabel, 
-        stock:productStock, 
-        rating:productRating, 
-    } = myProduct
+const transaction = (type, { label = 'Unknown', stock = 0 } = {}) => {
 
-    console.log(productLabel)
-    console.log(productStock)
-    console.log(productRating)
+    console.log(type)
+    console.log(label)
+    console.log(stock)
 }
 
-transaction('order', product)
+transaction('order')
